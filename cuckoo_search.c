@@ -5,6 +5,7 @@
 #include "RngStream.h"
 #include "cuckoo_search.h"
 
+
 void init(int dim, int lb, int ub, Nests *Nest, RngStream g1){
 	int i;
 	for(i=0;i<nnest;i++){
@@ -110,7 +111,13 @@ void get_cuckoos(int lb, int ub, int dim, Nests *best, Nests *new_Nest, Nests *N
 
 }
 
-void CS(int lb, int ub, int dim, Nests *Nest,double (*fobj)(double x[], int), RngStream g1){
+void CS(int lb, int ub, int dim, Nests *Nest,double (*fobj)(double x[], int)){
+	srand(time(0));
+
+	unsigned long germe[6] = { rand(), rand(), rand(), rand(), rand(), rand() };
+    RngStream_SetPackageSeed (germe);
+    RngStream g1 = RngStream_CreateStream ("Laplace");
+	
 	double pa = 0.25;
 	Nests new_Nest[nnest], best;
 	init(dim,lb,ub,Nest, g1);

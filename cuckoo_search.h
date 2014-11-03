@@ -1,3 +1,4 @@
+
 #define iter 1000
 
 #define nnest 25
@@ -8,6 +9,6 @@ typedef struct Nest{
     double fx;
 }Nests;
 
-void CS(int, int, int, Nests *,double (*fobj)(double[],int), RngStream g1);
+void CS(int, int, int, Nests *,double (*fobj)(double[],int));
 
 double (*fobj)(double x[], int);
